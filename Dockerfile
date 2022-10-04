@@ -4,6 +4,7 @@
 
 FROM golang:1.16-alpine
 
+RUN sed -i 's/https/http/' /etc/apk/repositories
 RUN apk add --no-cache \
       build-base \
       git \
