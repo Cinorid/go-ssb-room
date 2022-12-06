@@ -5,16 +5,18 @@ SPDX-License-Identifier: CC0-1.0
 -->
 
 # Go-SSB Room
-[![REUSE status](https://api.reuse.software/badge/github.com/ssb-ngi-pointer/go-ssb-room)](https://api.reuse.software/info/github.com/ssb-ngi-pointer/go-ssb-room)
+[![REUSE status](https://api.reuse.software/badge/github.com/ssbc/go-ssb-room)](https://api.reuse.software/info/github.com/ssbc/go-ssb-room)
 
-This repository contains code for a [Secure Scuttlebutt](https://ssb.nz) [Room (v1+v2) server](https://github.com/ssb-ngi-pointer/rooms2), written in Go.
+This repository implements the [Room (v1+v2) server spec](https://github.com/ssbc/rooms2), in Go.
 
 It includes:
-* secret-handshake+boxstream network transport, sometimes referred to as SHS, using [secretstream](https://github.com/cryptoscope/secretstream)
+* secret-handshake+boxstream network transport, sometimes referred to as SHS, using [secretstream](https://github.com/ssbc/go-secretstream)
 * muxrpc handlers for tunneling connections
 * a fully embedded HTTP server & HTML frontend, for administering the room
 
 ![](./docs/images/screenshot.png)
+
+See [this project](https://github.com/orgs/ssbc/projects/2) for current focus.
 
 ## :star: Features
 
@@ -26,6 +28,7 @@ It includes:
 * Alias management
 
 For a comprehensive introduction to rooms 2.0, 🎥 [watch this video](https://www.youtube.com/watch?v=W5p0y_MWwDE).
+For a description of MuxRPC APIs see https://github.com/ssbc/rooms2
 
 ## :rocket: Deployment
 
@@ -44,4 +47,3 @@ For an in-depth codebase walkthrough, see the [development.md](./docs/developmen
 ## License
 
 MIT
-

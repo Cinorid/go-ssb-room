@@ -9,7 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"go.cryptoscope.co/muxrpc/v2"
+	"github.com/ssbc/go-muxrpc/v2"
 )
 
 type manifestHandler string
@@ -45,6 +45,7 @@ const manifest manifestHandler = `
 
 		"connect": "duplex",
 		"attendants": "source",
+		"members": "source",
 		"metadata": "async",
 		"ping": "sync"
 	},

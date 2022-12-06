@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC0-1.0
 
 ## Development notes
 
-To get started, you need a recent version of [Go](https://golang.org). v1.16 and onward should be sufficient.
+To get started, you need a recent version of [Go](https://golang.org). v1.17 and onward should be sufficient.
 
 Also, if you want to develop the CSS and HTML on the website, you need Node.js v14 in order to compile Tailwind.
 
@@ -37,7 +37,7 @@ Usage of ./server:
   -repo string
     	where to put the log and indexes (default "~/.ssb-go-room")
   -shscap string
-    	secret-handshake app-key (or capability) (default "1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=")
+    	secret-handshake app-key or capability; should likely not be changed as this makes you part of a different network (default "1KHLiKZvAvjbY1ziZEHMXawbCEIM6qwjCDm3VYRan/s=")
   -version
     	print version number and build date
 
@@ -69,8 +69,8 @@ go generate ./...
 cd cmd/server && go build && ./server -htts-domain=my.room.example
 ```
 
-
 ## Tooling
+
 ### Mocks
 
 [`counterfeiter`](https://github.com/maxbrunsfeld/counterfeiter) enables generating mocks for defined interfaces. To update the mocks, run `go generate` in package roomdb.
@@ -126,12 +126,14 @@ See the [testing.md](./testing.md) for a thorough walkthorugh of the different t
 
 ## Release packaging
 
-Because of [issue #79](https://github.com/ssb-ngi-pointer/go-ssb-room/issues/79) we can't simply create binaries for all platforms independantly. Therefore binaries for re-distributions need to be created on the relevant distributions themselvs. We currently do this for debian. The process is as follows:
+Because of [issue #79](https://github.com/ssbc/go-ssb-room/issues/79) we can't simply create binaries for all platforms independantly. Therefore binaries for re-distributions need to be created on the relevant distributions themselvs. We currently do this for debian. The process is as follows:
 
-1) Install a recent debian stable version onto a dedicated machine or VM for instance (docker might also be possible).
-2) Install [Go](https://golang.org/doc/install).
-3) Install a C compiler (`sudo apt install gcc` for instance) for the CGo based sqlite dependency.
-4) Install [GoReleaser](https://goreleaser.com/install/).
-5) Create a version tag in git.
-6) run `goreleaser release` at the root of the repo to create the `dist/` folder with the `.deb` file.
-7) Upload the built packages.
+1. Install a recent debian stable version onto a dedicated machine or VM for instance (docker might also be possible).
+1. Install [Go](https://golang.org/doc/install).
+1. Install a C compiler (`sudo apt install gcc` for instance) for the CGo based sqlite dependency.
+1. Install a compiler which supports cross-compilation for ARM* architectures (`sudo apt install gccgo-aarch64-linux-gnu gccgo-arm-linux-gnueabihf`).
+1. Install Node.js v14 and install the dependencies (`cd ./web/styles && npm ci`, you may need to `npm install postcss` also).
+1. Install [GoReleaser](https://goreleaser.com/install/).
+1. Create a version tag in git.
+1. Run `goreleaser release` at the root of the repo to create the `dist/` folder with the `.deb` file.
+1. Upload the built packages.

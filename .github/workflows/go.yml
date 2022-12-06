@@ -25,13 +25,16 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.16
-    
+        go-version: 1.17
+
     - name: Get dependencies
       run: go get -v -t -d ./...
 
     - name: Build smoke test
       run: go build ./cmd/...
+
+    - name: Build dev smoke test
+      run: go build -tags dev ./cmd/...
 
     - name: install node ssb-stack
       run: |
@@ -54,4 +57,3 @@ jobs:
       with:
         commit_message: update production style.css
         file_pattern: web/assets/style.css
-
